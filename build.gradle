@@ -22,13 +22,13 @@ dependencies {
 
 // uncomment this to force the usage of log4j2 2.15.0 which should not be vulnerable anymore
 
-// configurations.all {
-// 	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-// 		if (details.requested.group == 'org.apache.logging.log4j') {
-// 			details.useVersion '2.15.0'
-// 		}
-// 	}
-// }
+ configurations.all {
+ 	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+ 		if (details.requested.group == 'org.apache.logging.log4j') {
+ 			details.useVersion '2.15.0'
+ 		}
+ 	}
+ }
 
 test {
 	useJUnitPlatform()
